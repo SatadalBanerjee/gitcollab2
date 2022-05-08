@@ -7,6 +7,37 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>hi</h1>
+    <form action="" id="format">
+        <input type="email" placeholder="Enter your Email" id="email">
+        <input type="password" placeholder="Enter your Password" id="password">
+        <input type="submit" value="Log In">
+    </form>
 </body>
 </html>
+<script>
+    var UserData=JSON.parse(localStorage.getItem("signuppage"));
+    var form=document.querySelector("form");
+    form.addEventListener("submit",function(event){
+        event.preventDefault();
+
+        var data={
+            Email:form.email.value,
+            Password:form.password.value,
+        }
+
+        if (UserData===null){
+            alert("Please creat your Account");
+        }
+        else if (UserData.UserEmail==data.Email && UserData.UserPassword==data.Password){
+            localStorage.setItem("SignIn",JSON.stringify(UserData));
+            alert("Sign In Successful")
+            window.location.href="index.html"
+        }
+        else 
+        {
+            alert("User does not Exist")
+        }
+
+    })
+
+</script>
